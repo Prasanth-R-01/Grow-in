@@ -1,4 +1,4 @@
-from msilib.schema import Media
+# from msilib.schema import Media
 from django.shortcuts import render
 from django.contrib.auth.models import User ,auth
 from django.shortcuts import render,redirect
