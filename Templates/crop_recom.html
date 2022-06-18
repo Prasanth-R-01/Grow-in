@@ -1,0 +1,417 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Crop Recom | Grow'in</title>
+
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon_io//apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_io//favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'images/favicon_io//site.webmanifest' %}">
+
+  <style>
+    #submit-btn-crop-info{
+      border: 0!important; 
+      background-color: transparent!important;
+      box-shadow: inset 0 0 0 0 #7d9253;
+      color: #7d9253;
+      margin: .25rem -.25rem;
+      padding: 0 .25rem;
+      transition: color .4s ease-in-out, box-shadow .4s ease-in-out;
+      line-height: 2;
+    }
+    #submit-btn-crop-info:hover{
+      box-shadow: inset 350px 0 0 0 #7d9253;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+
+  <div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <h2 class="main-heading display-4 my-5 font-weight-bold">CROP RECOMMENDATION</h2>
+        <!-- <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
+      </div>
+
+      <div class="row g-5 ml-lg-5">
+        <div class="">
+          <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe> <!-- return fieldPreparationVisibility(); -->
+          <form class="needs-validation" action="crop_rec" method="post" onsubmit="return fieldPreparationVisibility();">
+            {% csrf_token %}
+            <div class="row g-3">
+
+              <div class="col-sm-6 text-center mx-auto" style="padding-bottom: 10px;">
+                <button onclick="getLocation()" class="btn btn-outline-success btn-lg" id="btn" style="margin-top: 26px;">Grant Location Access</button>
+                <!-- <p id="demo"></p> -->
+                <small class="form-text text-muted pt-1">We'll never share your location with anyone else.</small>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <pre class="input-group-text lat">Latitude</pre>
+                  <input id="lat" name="lat" class="form-control" placeholder="Your latitude is " > <!-- use "lat" as ID to get the element in the backend -->
+                </div>
+                <br>
+                <div class="input-group">
+                  <pre class="input-group-text">Longitude</pre>
+                  <input id="lon" name="lon" class="form-control" placeholder="Your longitude is " > <!-- use "lon" as ID to get the element in the backend-->
+                </div>
+                <div class="custom-control custom-checkbox pt-2">
+                  <input type="checkbox" class="custom-control-input" id="coordinateCheckbox">
+                  <label class="custom-control-label" for="coordinateCheckbox" onclick="check()">Enter coordinates manually</label>
+                </div>
+              </div>
+
+              <div class="col-sm-6 my-custom">
+                <label for="address" class="form-label">Area for Kitchen Garden</label>
+                <input type="number" name="area" min="1" class=" form-control" style="width: 100%" placeholder="Type the area allocated for Kitchen Garden" required>
+                <!-- onkeypress="return event.charCode >= 48" -->
+              </div>
+
+              <div class="col-sm-6 my-custom">
+                <label for="" class="form-label" style="color: transparent!important">Units</label>
+                <label class="sr-only" for="inlineFormInputGroup">Units</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">Units</div>
+                  </div>
+                  <select name="unit" id="" class="form-control" required>
+                    <option value="">--Select any one unit--</option>
+                    <option value="sqfeet">Square Feet</option>
+                    <option value="sqmeter">Square Meter</option>
+                    <option value="cent">Cent</option>
+                  </select>
+                  <!-- <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username"> -->
+                </div>
+              </div>
+
+
+              <div class="col-12">
+                <label for="" class="form-label">Water Quantity</label>
+                <input type="number" name="quantity" min="1" class=" form-control" style="width: 100%" placeholder="Type the quantity of water (in litres) that you can use daily for Kitchen Garden" required>
+              </div>
+
+              <div class="col-12 my-custom">
+                <label for="" class="form-label">Water Quality</label>
+                <select name="quality" id="" class="form-control" required>
+                  <option value="">--Select any one of the below categories--</option>
+                  <option value="drinkable">Water is Drinkable</option>
+                  <option value="lessSalinity">Water is Less Saline</option>
+                  <option value="moreSalinity">Water is more Saline</option>
+                </select>
+                <small class="form-text text-muted pt-1">If not sure about the choice, kindly take in a sip of water and select any one of the above categories</small>
+              </div>
+
+              <div class="col-12">
+                <label for="" class="form-label">Soil Type</label>
+                <select name="soil" id="soilType" class="form-control" required onchange="GetSoilType(this)">
+                  <option value="">--Select any one soil type--</option>
+                  <option value="sandy">Sandy Soil</option>
+                  <option value="loamy">Loamy Soil</option>
+                  <option value="clay">Clay Soil</option>
+                </select>
+                <a href="https://hgic.clemson.edu/factsheet/soil-texture-analysis-the-jar-test/" class="pt-2" style="display: inline-block;" target="_blank">Need help in choosing the type of soil?</a>
+              </div>
+
+              <div class="form-check my-custom">
+                <div class="">
+                  <input type="radio" name="soil-test-result" id="not-tested-soil" value="No" required>
+                  <label class="form-check-label" for="not-tested-soil">Soil Has Not been Tested</label>
+                </div>
+
+                <div class="">
+                  <input type="radio" name="soil-test-result" id="tested-soil" value="Yes" required>
+                  <label class="form-check-label" for="tested-soil">Soil Has been Tested</label>
+                  <div class="reveal-if-active">
+                    <label for="ph">Ph</label>
+                    <input type="number" name="ph" onkeypress="return event.charCode >= 48" min="0" max="14" id="ph" name="ph" class="require-if-active form-control" data-require-pair="#tested-soil" placeholder="Enter the Ph value of Soil" required>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <button class="w-100 btn btn-primary btn-lg result-btn" type="submit">Get Result</button>
+          </form>
+
+          <!--  Top Crops based on our Recommendation -->
+          <h2 class="main-heading mt-5 mb-3 font-weight-bold">TOP CROPS BASED ON OUR RECOMMENDATION</h2>
+          <div id="predicted-crops" class="font-med-size">
+            <!-- Result of the ML Model wll be printed in this div tag -->
+            {% if messages %}
+            {% for message in messages %}
+              <p class="mt-5 mb-3 text-muted" style="color:#d7385e ;" >{{message}}</p>
+            {% endfor %}
+            {% else %}
+            
+
+            <ul style="list-style-type: none;">
+              
+              {% for i,j in final_res %}
+              <form action="cropInfo" method="post" onsubmit="">
+                  {% csrf_token %}
+                  <input class="text-uppercase" name="name" type="submit" value="{{ i }}" id="submit-btn-crop-info"> <!-- {{ i }} &nbsp; [{{ j }}%] -->
+                  <!-- <li> <a href="{% url 'amaranth' %}" target="_blank" onclick="this.setAttribute('name','{{ i }}'); form.submit()">{{ i }} &nbsp; [{{ j }}%]</a> </li> -->
+
+              </form>
+              {% endfor %}
+
+              {% endif %}
+            </ul>
+          </div>
+
+          <div id="field-preparation">
+            <h1 class="main-heading mt-5 mb-3 font-weight-bold">FIELD PREPARATION</h1>
+            <h3 class="main-heading mt-4">COMPOSTING BASICS:</h3>
+            <div class="font-med-size lead">
+              Composting is the natural process of recycling organic matter, such as leaves and food scraps, into a valuable fertilizer that can enrich soil and plants.
+            </div>
+
+            <h3 class="main-heading mt-4">THINGS REQUIRED:</h3>
+            <div class="font-med-size">
+              <ol>
+                <li>Green matter - High nitrogen</li>
+                <li>Brown matter - High carbon</li>
+                <li>Water</li>
+              </ol>
+            </div>
+
+            <h3 class="main-heading mt-4">TWO METHODS FOR COMPOSTING</h3>
+            <div class="font-med-size">
+              <ol>
+                <li style="font-size: 1.25rem" class="mb-3">Piling Up</li>
+                <p style="font-size: 1.15rem" class="lead">
+                  Compost should have two parts of Brown(Carbon) for every one part of Green(Nitrogen). If piled up then it should be turned every 1-2 days. After 14-21 days compost is ready to use.
+                  This method is called Berkley method and it is one of the quickest ways to create a compost. Maintain the moisture in the pit.
+                </p>
+                <li style="font-size: 1.25rem" class="mb-3">Spreading in Field</li>
+                <p style="font-size: 1.15rem" class="lead">
+                  If compost is spread in the field, then green and brown should be spread in layers on top of each other. Spread the compost and put some
+                  soil on top of that and leave it for around 20 days to create compost.
+                </p>
+              </ol>
+            </div>
+
+            <h3 class="main-heading mt-4 mb-3">MATERIALS THAT <span class="font-weight-bold">CAN</span> BE USED FOR COMPOST</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr class="table-success">
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">Material</th>
+                  <th scope="col">Carbon/Nitrogen</th>
+                  <th scope="col">Information</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Wood ash</td>
+                  <td>Carbon</td>
+                  <td>Only use ash from clean materials; sprinkle lightly</td>
+                </tr>
+                <tr>
+                  <td>Tea leaves</td>
+                  <td>Nitrogen</td>
+                  <td>Loose or in bags</td>
+                </tr>
+                <tr>
+                  <td>Table Scraps</td>
+                  <td>Nitrogen</td>
+                  <td>Add with dry carbon items</td>
+                </tr>
+                <tr>
+                  <td>Straw or hay</td>
+                  <td>Carbon</td>
+                  <td>Straw is best; hay (with seeds) is less ideal</td>
+                </tr>
+                <tr>
+                  <td>Shrub prunings </td>
+                  <td>Carbon</td>
+                  <td>Woody prunings are slow to break down</td>
+                </tr>
+                <tr>
+                  <td>Shredded paper</td>
+                  <td>Carbon</td>
+                  <td>Avoid using glossy paper and colored inks</td>
+                </tr>
+                <tr>
+                  <td>Seaweed and kelp</td>
+                  <td>Nitrogen</td>
+                  <td>Apply in thin layers; good source for trace minerals</td>
+                </tr>
+                <tr>
+                  <td>Sawdust pellets </td>
+                  <td>Carbon</td>
+                  <td>High carbon levels; add in layers to avoid clumping</td>
+                </tr>
+                <tr>
+                  <td>Pine needles</td>
+                  <td>Carbon</td>
+                  <td>Acidic; use in moderate amounts</td>
+                </tr>
+                <tr>
+                  <td>Newspaper</td>
+                  <td>Carbon</td>
+                  <td>Avoid using glossy paper and colored inks</td>
+                </tr>
+                <tr>
+                  <td>Leaves</td>
+                  <td>Carbon</td>
+                  <td>Leaves break down faster when shredded</td>
+                </tr>
+                <tr>
+                  <td>Lawn & garden weeds </td>
+                  <td>Nitrogen</td>
+                  <td>Only use weeds which have not gone to seed</td>
+                </tr>
+                <tr>
+                  <td>Green comfrey leaves</td>
+                  <td>Nitrogen</td>
+                  <td>Excellent compost 'activator'</td>
+                </tr>
+                <tr>
+                  <td>Grass clippings</td>
+                  <td>Nitrogen</td>
+                  <td>Add in thin layers so they don't mat into clumps</td>
+                </tr>
+                <tr>
+                  <td>Garden plants </td>
+                  <td>--</td>
+                  <td>Use disease-free plants only</td>
+                </tr>
+                <tr>
+                  <td>Fruit and vegetable scraps </td>
+                  <td>Nitrogen</td>
+                  <td>Add with dry carbon items</td>
+                </tr>
+                <tr>
+                  <td>Flowers, cuttings</td>
+                  <td>Nitrogen</td>
+                  <td>Chop up any long woody stems</td>
+                </tr>
+                <tr>
+                  <td>Eggshells</td>
+                  <td>Neutral</td>
+                  <td>Best when crushed</td>
+                </tr>
+                <tr>
+                  <td>Dryer lint</td>
+                  <td>Carbon</td>
+                  <td>Best if from natural fibers</td>
+                </tr>
+                <tr>
+                  <td>Corn cobs, stalks</td>
+                  <td>Carbon</td>
+                  <td>Slow to decompose; best if chopped up</td>
+                </tr>
+                <tr>
+                  <td>Coffee grounds</td>
+                  <td>Carbon</td>
+                  <td>Filters may also be included</td>
+                </tr>
+                <tr>
+                  <td>Chicken manure</td>
+                  <td>Nitrogen</td>
+                  <td>Excellent compost 'activator'</td>
+                </tr>
+                <tr>
+                  <td>Cardboard</td>
+                  <td>Carbon</td>
+                  <td>Shred material to avoid matting</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3 class="main-heading mt-4 mb-3">MATERIALS THAT <span class="font-weight-bold">CAN'T</span> BE USED FOR COMPOST</h3>
+            <table class="table table-striped">
+              <thead>
+                <tr class="table-danger">
+                  <!-- <th scope="col">#</th> -->
+                  <th scope="col">Material</th>
+                  <th scope="col">Information</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Black walnut tree leaves or twigs</td>
+                  <td>Releases substances that might be harmful to plants</td>
+                </tr>
+                <tr>
+                  <td>Coal or charcoal ash</td>
+                  <td>Might contain substances harmful to plants</td>
+                </tr>
+                <tr>
+                  <td>Dairy products (e.g., butter, milk, sour cream, yogurt) and eggs</td>
+                  <td>Create odor problems and attract pests such as rodents and flies</td>
+                </tr>
+                <tr>
+                  <td>Diseased or insect-ridden plants</td>
+                  <td>Diseases or insects might survive and be transferred back to other plants</td>
+                </tr>
+                <tr>
+                  <td>Fats, grease, lard, or oils</td>
+                  <td>Create odor problems and attract pests such as rodents and flies</td>
+                </tr>
+                <tr>
+                  <td>Meat or fish bones and scraps</td>
+                  <td>Create odor problems and attract pests such as rodents and flies</td>
+                </tr>
+                <tr>
+                  <td>Pet wastes (e.g., dog or cat feces, soiled cat litter)</td>
+                  <td>Might contain parasites, bacteria, germs, pathogens, and viruses harmful to humans</td>
+                </tr>
+                <tr>
+                  <td>Yard trimmings treated with chemical pesticides</td>
+                  <td>Might kill beneficial composting organisms</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div id="soilDescription">
+              <h3 class="main-heading mt-4" id="soilHeading"></h3>
+              <ul style="list-style-type: square;" id="soilPoints"></ul>
+            </div>
+
+          </div> <!-- field preparation  -->
+
+          <div id="stepsToGrow">
+            <h1 class="main-heading mt-5 mb-3 font-weight-bold">STEPS TO GROW A SEED</h1>
+            <p class="lead">While planting the seeds kindly ensure that these steps are followed:</p>
+            <ul style="list-style-type: circle ;">
+              <li>Take a Paper cup (25 ml).</li>
+              <li>Place a coir inside that, if incase coir is not available use soil with 50% sand mixed to it.</li>
+              <li>Make a hole in the coir/soil using Index finger. Hole height should be till the first line of the Index finger</li>
+              <li>Pour water using bottle cap. One bottle cap of water daily will be sufficient.</li>
+              <li>Repeat this untill four leaves are seen and after that you can transfer it to the soil.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- External JS -->
+  <script src="{% static 'js/services.js' %}" charset="utf-8"></script>
+  <script src="{% static 'js/index.js' %}" charset="utf-8"></script>
+
+  {% include 'footer.html' %}
+
+</body>
+
+</html>

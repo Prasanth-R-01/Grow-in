@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Grow'in | Home</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon_io//apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_io//favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon_io//site.webmanifest' %}">
+
+</head>
+
+<body>
+
+ {% include 'navbar.html' %}
+
+  <!-- Landing content -->
+  <div class="row" style="margin-right: 0px">
+    <div class="col-lg-6 text-center">
+      <img src="{% static 'images/Farming Vector Illustration.svg' %}" alt="" class="img-fluid p-3 m-n4"> <!-- w-75 -->
+    </div>
+    <div class="col-lg-6 d-flex align-items-center justify-content-around">
+      <!-- position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -->
+      <h1 class="title">
+        <!-- Agriculture
+        <br>
+        <span class="align-items-center inside-title">with</span>
+        <br>
+        Artificial
+        <br>
+        Intelligence -->
+        Grow
+        <br>
+        <!-- on your --><span class="align-items-center inside-title">on your</span>
+        <br>
+        own
+        <br>
+        <!-- with  --><span class="align-items-center inside-title">with</span>
+        <br>
+        Grow'in
+        <br>
+        <p class="lead pt-3">Your ultimate guide for Kitchen Garden</p>
+      </h1>
+      <div class="">
+        <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_od9tcoxd.json" background="transparent" speed="1" style="width: 300px; height: 350px;" loop autoplay></lottie-player>
+      </div>
+
+    </div>
+  </div>
+
+
+  <section id="pcard" class="light">
+    <div class="container py-2">
+      <div class="h1 text-center text-dark my-5 font-weight-bold display-4 heading" id="pageHeaderTitle">What <span style=" color: #7d9253">We Do?</span></div>
+      <article id="crop_recom" class="postcard light green mb-5">
+        <a class="pcard_link postcard__img_link" href="#">
+          <img class="postcard__img" src="{% static 'images/crop_recom.jpg' %}" alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+          <h1 class="postcard__title green sub-heading"><a href="#" class="pcard_link">Crop Recommendation</a></h1>
+          <div class="postcard__bar"></div>
+          <div class="postcard__preview-txt">
+            Crop Recommendation System recommends <span class="font-weight-bold font-italic">Kitchen Garden</span> crops based on weather and soil parameters of the user. There are two
+            categories of crop recommendation for users:
+            <li class="pt-2 font-weight-bold">Who haven't tested their soil</li>
+            <p class="pt-2 pl-4">
+              For users who haven’t taken soil test, they need to give permission to access live
+              location and enter the soil type and water availability.
+            </p>
+            <li class="pt-2 font-weight-bold">Who have tested their soil</li>
+            <p class="pt-2 pl-4">
+              For users who have taken soil test, in addition to location, soil type and water availability, they need to
+              enter the ph value of the soil.
+            </p>
+          </div>
+          <!-- <ul class="postcard__tagbox"> -->
+          <ul class="tag__item play green">
+            {% if request.user.is_authenticated %}
+            <a href="crop" class="pcard_link">Get Started <i class="fas fa-arrow-right fa-1x pl-2"></i></a>
+            {% else %}
+            <a href="signup" class="pcard_link">Get Started <i class="fas fa-arrow-right fa-1x pl-2"></i></a>
+            {% endif %}
+          </ul>
+          <!-- </ul> -->
+          <div class="arrow_right"> </div>
+        </div>
+      </article>
+      <article id="disease_pred" class="postcard light green mb-5">
+        <a class="pcard_link postcard__img_link" href="#">
+          <img class="postcard__img" src="{% static 'images/disease_pred.png' %}" alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark" style="padding-left: 60px;">
+          <h1 class="postcard__title green sub-heading"><a href="#" class="pcard_link">Disease Prediction</a></h1>
+          <div class="postcard__bar"></div>
+          <div class="postcard__preview-txt">
+            Disease Prediction System predicts <span class="font-weight-bold font-italic">common Kitchen Garden diseases</span> based on the image uploaded by the user. The user
+            needs to upload an image that covers the infected area and the system uses Image Classification
+            Algorithms to predict the disease and recommend pesticides for that particular disease.
+          </div>
+          <!-- <ul class="postcard__tagbox"> -->
+          <ul class="tag__item play green">
+            {% if request.user.is_authenticated %}
+            <a href="dp" class="pcard_link">Get Started <i class="fas fa-arrow-right fa-1x pl-2"></i></a>
+            {% else %}
+            <a href="signup" class="pcard_link">Get Started <i class="fas fa-arrow-right fa-1x pl-2"></i></a>
+            {% endif %}
+          </ul>
+          <!-- </ul> -->
+          <div class="arrow_right"> </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+
+
+  <div class="container my-5">
+    <section id="steps">
+      <div class="text-center mb-5">
+        <h2 class="font-weight-bold display-4 heading">How It <span style=" color: #7d9253">Works?</span></h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="steps-div bg-light position-relative px-3 my-5">
+            <div class="steps-circle font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white">
+              1
+            </div>
+            <div class="px-3 text-center pb-3">
+              <h4 class="sub-heading">Sign In</h4>
+              <p class="text-muted font-weight-light my-3">
+                <!-- To use our service first Sign-In to the application and if you are a new user first
+                        create your profile and go ahead. -->
+                <b class="font-weight-bold">For Existing User</b> - Login to the application and avail the service, <br />
+                <b class="font-weight-bold">For New User</b> - Create your Profile and go ahead
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="steps-div bg-light position-relative px-3 my-5">
+            <div class="steps-circle font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white">
+              2
+            </div>
+            <div class="px-3 text-center pb-3">
+              <h4 class="sub-heading">Enter Input</h4>
+              <p class="text-muted font-weight-light my-3">
+                <b class="font-weight-bold">Crop Recommendation</b> - location access, Type of Soil, and Water availability,<br />
+                <b class="font-weight-bold">Disease Prediction</b> - upload the image of infected part.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="steps-div bg-light position-relative px-3 my-5">
+            <div class="steps-circle font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white">
+              3
+            </div>
+            <div class="px-3 text-center pb-3">
+              <h4 class="sub-heading">Get Result</h4>
+              <p class="text-muted font-weight-light my-3">
+                <b class="font-weight-bold">Crop Recommendation</b> - Top 10 <br /><span class="font-italic"> Kitchen Garden crops</span> <br />
+                <b class="font-weight-bold">Disease Prediction</b> - Recommends Pesticide for the infected disease.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ExternaL JS -->
+  <script src="{% static 'js/index.js' %}" charset="utf-8"></script>
+
+  {% include 'footer.html' %}
+
+</body>
+
+</html>

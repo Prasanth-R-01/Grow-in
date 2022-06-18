@@ -1,0 +1,167 @@
+{% load static %}
+{% url 'login' as login %}
+{% url 'signup' as signup %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Welcome | Agrogence</title>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap - CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/e395fb5b59.js" crossorigin="anonymous"></script>
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon_io//apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_io//favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'images/favicon_io//site.webmanifest' %}">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="fixed-top mx-4 my-4" id="google_translate_element"></div>
+
+  <div class="cont">
+    <div class="form sign-in">
+      <div class="mt-5 pt-3">
+        <div id="google_translate_element"></div>
+        <h2 class="pb-3">Sign In</h2>
+        <form class="" action="login" method="post">
+          {% csrf_token %}
+          {% if request.GET.next %} 
+                    <input type="hidden" name="next" value="{{ request.GET.next }}" >
+                {% endif %}
+          <label>
+            <span>Email Address</span>
+            <input type="email" name="email" required>
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" required>
+          </label>
+          <button class="submit" type="submit">Sign In</button>
+        </form>
+        
+
+         {% if request.path == login %}
+        {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+      {% endif %} 
+
+        
+      </div>
+      <!-- <div class="social-media">
+        <h5 class="pt-5">Connect with us</h5>
+        <ul>
+          <li><img src="images/facebook.png"></li>
+          <li><i class="fa-brands fa-github"></i></li>
+          <li><img src="images/linkedin.png"></li>
+          <li><img src="images/instagram.png"></li>
+        </ul>
+      </div> -->
+    </div>
+
+    <div class="sub-cont">
+      <div class="img">
+        <div class="img-text m-up">
+          <h1>New here?</h1>
+          <p>sign up and discover</p>
+        </div>
+        <div class="img-text m-in">
+          <h1>One of us?</h1>
+          <p>just sign in</p>
+        </div>
+        <div class="img-btn">
+          <span class="m-up">Sign Up</span>
+          <span class="m-in">Sign In</span>
+        </div>
+      </div>
+      <div class="form sign-up">
+        <div class="mt-2">
+          <h2 class="pb-2">Sign Up</h2>
+          <form class="" action="signup" method="post">
+            {% if request.GET.next %} 
+                    <input type="hidden" name="next" value="{{ request.GET.next }}" >
+                {% endif %}
+            {% csrf_token %}
+            <label class="pb-3">
+              <span>Email</span>
+              <input type="email" name="email" required>
+            </label>
+            <label class="pb-3">
+              <span>Password</span>
+              <input type="password" id="password" name="password1" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$" onclick="showFunc()" onblur="hideFunc()" required>
+            </label>
+            <small id="passwordHelpInline" class="text-muted" style="float: right; margin-top: -80px;">
+              &#9679; 8-20 characters long <br>
+              &#9679; Atleast one Uppercase <br>
+              &#9679; Atleast one Lowercase <br>
+              &#9679; Atleast one numeric
+            </small>
+            <!-- <div id="pass" class="text-center text-muted pt-2 pb-3" style="visibility: hidden;">
+              6 to 20 Character <br>
+              Atleast one numeric digit <br>
+              Atleast one Uppercase letter <br>
+              Atleast one Lowercase letter
+            </div> -->
+            <label id="c_pass" class="pb-3">
+              <span>Confirm Password</span>
+              <input type="password" id="confirm_password" name="password2" required>
+            </label>
+            <!-- <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="same-address">
+              <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div> -->
+            <button type="submit" class="submit" id="sub">Sign Up Now</button>
+
+             {% if request.path == signup %}
+            {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+    {% endif %} 
+          </form>
+
+          
+
+        </div>
+        
+      </div>
+      
+    </div>
+    <!-- <div class="fixed-bottom text-center h4" style="color: red;">
+      {% for message in messages %}
+            {{ message }}
+      {% endfor %}
+    </div> -->
+  </div>
+  <script type="text/javascript" src="script.js"></script>
+
+
+  <!-- External JS -->
+  <script src="{% static 'js/signup.js' %}" charset="utf-8"></script>
+
+  <!-- Google Translate -->
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Bootstrap - JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

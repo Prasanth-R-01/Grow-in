@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>About | Grow'in</title>
+
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+
+  <style media="screen">
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    #contact {
+      background-color: #728f55;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #contact .contact-box {
+      width: clamp(100px, 90%, 1000px);
+      margin: 80px 50px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #contact .contact-links, .contact-form-wrapper {
+      width: 50%;
+      padding: 8% 5% 10% 5%;
+    }
+
+
+    #contact .contact-links {
+      background-color: #5b7244;
+      background:
+        radial-gradient(
+          circle at 55% 92%, #5b7244 0 12%, transparent 12.2%
+        ),
+        radial-gradient(
+          circle at 94% 72%, #5b7244 0 10%, transparent 10.2%
+        ),
+        radial-gradient(
+          circle at 20% max(78%, 350px), #5b7244 0 7%, transparent 7.2%
+        ),
+        radial-gradient(
+          circle at 0% 0%, #5b7244 0 40%, transparent 40.2%
+        ),
+        #8fab72;
+      border-radius: 10px 0 0 10px;
+    }
+
+    #contact .contact-form-wrapper {
+      background-color: #ffffff8f;
+      border-radius: 0 10px 10px 0;
+    }
+
+    @media only screen and (max-width: 800px) {
+      #contact .contact-links, .contact-form-wrapper {
+        width: 100%;
+      }
+
+     #contact .contact-links {
+        border-radius: 10px 10px 0 0;
+      }
+
+      #contact .contact-form-wrapper {
+        border-radius: 0 0 10px 10px;
+      }
+    }
+
+    @media only screen and (max-width: 400px) {
+      #contact .contact-box {
+        width: 95%;
+        margin: 8% 5%;
+      }
+    }
+
+    #contact h2 {
+      font-family: 'Arimo', sans-serif;
+      color: #fff;
+      font-size: clamp(30px, 6vw, 60px);
+      letter-spacing: 2px;
+      text-align: center;
+      transform: scale(.95, 1);
+    }
+
+    #contact .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding-top: 50px;
+    }
+
+    #contact .link {
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    #contact img {
+      width: 45px;
+      height: 45px;
+      filter:
+        hue-rotate(220deg)
+        drop-shadow(2px 4px 4px #0006);
+      transition: 0.2s;
+      user-select: none;
+    }
+
+    #contact img:hover {
+      transform: scale(1.1, 1.1);
+    }
+
+    #contact img:active {
+      transform: scale(1.1, 1.1);
+      filter:
+        hue-rotate(220deg)
+        drop-shadow(2px 4px 4px #222)
+        sepia(0.3);
+    }
+
+    #contact .form-item {
+      position: relative;
+    }
+
+    #contact label, input, textarea {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    #contact label {
+      position: absolute;
+      top: 10px;
+      left: 2%;
+      color: #999;
+      font-size: clamp(14px, 1.5vw, 18px);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #contact input, textarea {
+      width: 100%;
+      outline: 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      padding: 12px;
+      font-size: clamp(15px, 1.5vw, 18px);
+    }
+
+    #contact input:focus+label,
+    #contact input:valid+label,
+    #contact textarea:focus+label,
+    #contact textarea:valid+label {
+      font-size: clamp(13px, 1.3vw, 16px);
+      color: #777;
+      top: -20px;
+      transition: all .225s ease;
+    }
+
+    #contact .submit-btn {
+      background-color: #5b7244;
+      filter: drop-shadow(2px 2px 3px #0003);
+      color: #fff;
+      font-family: "Poppins",sans-serif;
+      font-size: clamp(16px, 1.6vw, 18px);
+      display: block;
+      padding: 12px 20px;
+      margin: 2px auto;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.2s;
+    }
+
+    #contact .submit-btn:hover {
+      transform: scale(1.1, 1.1);
+    }
+
+    #contact .submit-btn:active {
+      transform: scale(1.1, 1.1);
+      filter: sepia(0.5);
+    }
+
+    @media only screen and (max-width: 800px) {
+      #contact h2 {
+        font-size: clamp(40px, 10vw, 60px);
+      }
+    }
+
+    @media only screen and (max-width: 400px) {
+      #contact h2 {
+        font-size: clamp(30px, 12vw, 60px);
+      }
+
+      #contact .links {
+        padding-top: 30px;
+      }
+
+      #contact img {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+
+
+  <div class="container">
+
+    <div class="row my-5 py-5">
+      <div class="col-sm-12 text-center mb-5">
+        <img class="img-responsive center-block" src="{% static 'images/about.svg' %}" alt="" style="margin: 0 auto;">
+      </div>
+
+      <div class="col-sm-12">
+        <div class="my-5">
+          <h2 class="my-4 font-weight-bold" style="font-size: 2.7rem;">About <span style="color: #728f55">Grow'in</span></h2>
+          <p class="lead">
+            <span class="font-weight-bold">Grow'in</span> is an AI powered System that recommends crop and predicts disease particularly for Kitchen Garden Users.
+            At Grow'in you can get to know some of the top crops that can be grown in your Kitchen Garden based on the Weather and
+            Soil Parameters. Our ML Algorithm is trained in such a way that the results suggested are accurate and reliable.
+            For Disease Prediction, our DL model finds out the affected disease and suggests methodologies to cure that disease.
+            Along with this you can also get to know some of the effective ways in which you could prepare the field and also grow the seed into sapling and these
+            methods are verified by the Resource Person who is in the field of Agriculture.
+          </p>
+        </div>
+        <div class="my-5" id="team">
+          <h2 class="my-4 font-weight-bold" style="font-size: 2.7rem;">Our <span style="color: #728f55">Team</span></h2>
+          <p class="lead">
+            We are a group of enthusiastic engineers from Kumaraguru College of Technology, Coimbatore, creating this system for our Final Year Project. Our
+            team consists of:
+          <ul style="font-size: 1.2rem;">
+            <li>Deena Dhayalan S</li>
+            <li> <a href="http://prasanth.rf.gd/?i=1" target="_blank">Prasanth R</a> </li>
+            <li>Sathish M</li>
+          </ul>
+          </p>
+        </div>
+        <div class="my-5">
+          <h2 class="my-4 font-weight-bold" style="font-size: 2.7rem;">Our <span style="color: #728f55">Publication</span></h2>
+          <p class="lead">
+            For this Project we had done an extensive research regarding the existing solutions and how our solution is better, accurate and
+            user friendly than the existing ones. We had published a literature paper regarding this in an IEEE Conference and here is the link for the paper:
+          <ul>
+            <a href="https://ieeexplore.ieee.org/document/9767923" target="_blank">https://ieeexplore.ieee.org/document/9767923</a>
+          </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  <section id="contact" class="mb-5">
+  <div class="contact-box">
+    <div class="contact-links">
+      <h2>CONTACT</h2>
+      <div class="links">
+        <div class="link">
+          <a><img src="https://i.postimg.cc/m2mg2Hjm/linkedin.png" alt="linkedin"></a>
+        </div>
+        <div class="link">
+          <a><img src="https://i.postimg.cc/YCV2QBJg/github.png" alt="github"></a>
+        </div>
+        <div class="link">
+          <a><img src="https://i.postimg.cc/W4Znvrry/codepen.png" alt="codepen"></a>
+        </div>
+        <div class="link">
+          <a><img src="https://i.postimg.cc/NjLfyjPB/email.png" alt="email"></a>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrapper">
+      <form>
+        <div class="form-item">
+          <input type="text" name="sender" required>
+          <label>Name:</label>
+        </div>
+        <div class="form-item">
+          <input type="text" name="email" required>
+          <label>Email:</label>
+        </div>
+        <div class="form-item">
+          <textarea class="" name="message" required></textarea>
+          <label>Message:</label>
+        </div>
+        <button class="submit-btn">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+  </div>
+
+  
+
+
+  <!-- External JS -->
+  <script src="js/services.js" charset="utf-8"></script>
+
+  {% include 'footer.html' %}
+
+</body>
+
+</html>

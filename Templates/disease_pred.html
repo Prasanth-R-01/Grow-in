@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Disease Pred | Agrogence</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon_io//apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_io//favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/favicon_io//site.webmanifest' %}">
+
+    <!-- Bootstrap - CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.cssdocs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+
+
+  <div class="py-5 text-center">
+    <h2 class="main-heading display-4 my-5">DISEASE PREDICTION</h2>
+    <!-- <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
+  </div>
+
+
+  <section class="upload-area">
+
+    <div class="file-drop-area" style="width: 403px; height: 203px;">
+      <form action="dpForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="ml-3">
+          <!-- {{ form.as_p }} -->
+         <!-- <span class="choose-file-button">Choose Files</span>
+        <span class="file-message">or drag and drop files here</span> -->
+        <input type="file" name="dpimg" id="imageUpload" accept=".png, .jpg, .jpeg">
+        </div>
+                <div id="divImageMediaPreview"> </div>
+      </div>
+      <button class="my-5 btn btn-primary btn-lg result-btn" type="submit">Get Result</button>
+    </form>  
+  </section>
+      <div id="predicted_disease" class="">
+        {{ context|safe|escape }}
+      </div>  <!-- Result of Disease -->
+  
+    
+
+  
+
+  <!-- Internal JS -->
+  <script type="text/javascript">
+    $(document).on('change', '.file-input', function() {
+      var filesCount = $(this)[0].files.length;
+      var textbox = $(this).prev();
+      if (filesCount === 1) {
+        var fileName = $(this).val().split('\\').pop();
+        textbox.text(fileName);
+      } else {
+        textbox.text(filesCount + ' files selected');
+      }
+      if (typeof(FileReader) != "undefined") {
+        var dvPreview = $("#divImageMediaPreview");
+        dvPreview.html("");
+        $($(this)[0].files).each(function() {
+          var file = $(this);
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var img = $("<img />");
+            img.attr("style", "width: 150px; height:100px; padding: 10px");
+            img.attr("src", e.target.result);
+            dvPreview.append(img);
+          }
+          reader.readAsDataURL(file[0]);
+        });
+      } else {
+        alert("This browser does not support HTML5 FileReader.");
+      }
+    });
+  </script>
+
+  <!-- External JS -->
+  <script src="js/services.js" charset="utf-8"></script>
+  <script src="js/index.js" charset="utf-8"></script>
+
+  {% include 'footer.html' %}
+
+</body>
+
+</html>

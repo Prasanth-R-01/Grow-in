@@ -1,0 +1,471 @@
+html{
+  overflow-x: hidden!important;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* .bg-light-nav {
+  background-color: white !important;
+}
+
+
+
+.nav-link{
+  padding-left: 20px!important;
+  padding-right: 20px!important;
+  border-radius: 25px;
+}
+
+.navbar{
+  font-family: 'Quicksand', sans-serif;
+}
+
+.navbar-collapse{
+  /* margin-right: 50px; 
+  text-align: center;
+}
+
+
+.navbar-dark{
+  background-color: #728f55!important;
+}
+
+.navbar-light .nav-link:hover {
+  background-color: #728f55;
+  color: white!important;
+}
+
+
+
+.navbar-dark .nav-link:hover{
+  background-color: white;
+  color: black!important;
+}
+
+.navbar-light .dropdown-item:hover{
+  background-color: #728f55; 
+  color: white!important;
+}
+
+.navbar-dark .dropdown-item:hover{
+  background-color: white;
+  color: black!important;
+}
+
+.navbar-dark .dropdown-menu{
+  background-color: #728f55 !important;
+}
+
+.navbar-dark .dropdown-item{
+    color: white!important;
+}
+
+.dropdown-item{
+  border-radius: 20px;
+} */
+
+.title{
+  padding-left: 20px;
+  font-family: 'Spartan', sans-serif;
+  font-size: 60px;
+  color: #252525;
+}
+
+.inside-title{
+  font-size: 2.5rem;
+  color:#444444;
+  font-family: 'Spartan', sans-serif;
+}
+
+.heading{
+  font-family: 'Raleway', sans-serif!important;
+}
+
+.sub-heading{
+  font-family: 'Inter', sans-serif;
+}
+
+/* What we do - Section */
+
+#pcard {
+font-size: 16px;
+color: #fff;
+text-rendering: optimizeLegibility;
+font-weight: initial;
+}
+#pcard ul{
+  padding: 15px 0 15px 0;
+}
+.light {
+background:#F4F9F9;
+}
+#pcard a, a:hover {
+text-decoration: none;
+}
+.pcard_link, .pcard_link:hover{
+  transition: color 0.3s ease-in-out;
+}
+#pageHeaderTitle {
+margin: 2rem 0;
+/* text-transform: uppercase; */
+text-align: center;
+/* font-size: 2.5rem; */
+}
+/* Cards */
+.postcard {
+flex-wrap: wrap;
+display: flex;
+box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+border-radius: 10px;
+margin: 0 0 2rem 0;
+overflow: hidden;
+position: relative;
+color: #fff;
+}
+
+.postcard.light {
+background-color: #e1e5ea;
+}
+.postcard .t-dark {
+color: #18151f;
+}
+.postcard a {
+color: inherit;
+}
+.postcard h1, .postcard .h1 {
+margin-bottom: 0.5rem;
+font-weight: 500;
+line-height: 1.2;
+}
+.postcard .small {
+font-size: 80%;
+}
+.postcard .postcard__title {
+font-size: 1.75rem;
+}
+.postcard .postcard__img {
+max-height: 180px;
+width: 100%;
+object-fit: cover;
+position: relative;
+}
+.postcard .postcard__img_link {
+display: contents;
+}
+.postcard .postcard__bar {
+width: 50px;
+height: 10px;
+margin: 10px 0;
+border-radius: 5px;
+background-color: #424242;
+transition: width 0.2s ease;
+}
+.postcard .postcard__text {
+padding: 1.5rem;
+position: relative;
+display: flex;
+flex-direction: column;
+}
+.postcard .postcard__preview-txt {
+overflow: hidden;
+text-overflow: ellipsis;
+text-align: justify;
+height: 100%;
+}
+.postcard .postcard__tagbox {
+display: flex;
+flex-flow: row wrap;
+font-size: 14px;
+margin: 20px 0 0 0;
+padding: 0;
+justify-content: center;
+}
+.postcard .postcard__tagbox .tag__item {
+display: inline-block;
+/* background: rgba(83, 83, 83, 0.4); */
+border-radius: 3px;
+padding: 2.5px 10px;
+margin: 0 5px 5px 0;
+cursor: default;
+user-select: none;
+transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox:hover {
+  color: #728f55;
+}
+.postcard:before {
+content: "";
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background-image: linear-gradient(-70deg, #424242, transparent 50%);
+opacity: 1;
+border-radius: 10px;
+}
+.postcard:hover .postcard__bar {
+width: 100px;
+}
+@media screen and (min-width: 769px) {
+.postcard {
+ flex-wrap: inherit;
+}
+.postcard .postcard__tagbox {
+ justify-content: start;
+}
+.postcard .green.play{
+  font-size: 1.2rem;
+}
+.postcard .postcard__img {
+ max-width: 300px;
+ max-height: 100%;
+ transition: transform 0.3s ease;
+}
+.postcard .postcard__text {
+ padding: 3rem;
+ width: 100%;
+}
+.postcard .media.postcard__text:before {
+ content: "";
+ position: absolute;
+ display: block;
+ background: #18151f;
+ top: -20%;
+ height: 130%;
+ width: 55px;
+}
+.postcard:hover .postcard__img {
+ transform: scale(1.1);
+}
+.postcard:nth-child(2n+1) {
+ flex-direction: row;
+}
+.postcard:nth-child(2n+0) {
+ flex-direction: row-reverse;
+}
+.postcard:nth-child(2n+1) .postcard__text::before {
+ left: -12px !important;
+ transform: rotate(4deg);
+}
+.postcard:nth-child(2n+0) .postcard__text::before {
+ right: -12px !important;
+ transform: rotate(-4deg);
+}
+}
+@media screen and (min-width: 1024px) {
+.postcard__text {
+ padding: 2rem 3.5rem;
+}
+.postcard__text:before {
+ content: "";
+ position: absolute;
+ display: block;
+ top: -20%;
+ height: 130%;
+ width: 55px;
+}
+.postcard.dark .postcard__text:before {
+ background: #18151f;
+}
+.postcard.light .postcard__text:before {
+ background: #e1e5ea;
+}
+}
+/* COLORS */
+
+.postcard .green.play:hover {
+/* font-size: 25px; */
+color: #728f55;
+}
+.green .postcard__title:hover {
+color: #728f55; 
+}
+.green .postcard__bar {
+background-color: #728f55; 
+}
+.green::before {
+background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+@media screen and (min-width: 769px) {
+.green::before {
+ background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+.green:nth-child(2n)::before {
+ background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+}
+
+.red::before {
+ background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+.red:nth-child(2n)::before {
+ background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+}
+
+
+
+#steps a:hover {
+    text-decoration: none;
+}
+
+.steps-circle{
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  border-width: 4px !important;
+  background-color: #7d9253;
+}
+
+.steps-div{
+  border-radius: 20px!important;
+  transition: box-shadow 1s!important;
+}
+
+.steps-div:hover .steps-circle{
+  background-color: white;
+  color: #7d9253!important;
+  border-color: #7d9253!important;
+  border-width: 2px!important;
+}
+
+.steps-div:hover{
+  background-color: white!important;
+  border: 2px solid #7d9253!important;
+  /* box-shadow: 10px 10px 5px grey; */
+  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+/* svg {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+} */
+
+
+.footer {
+  position: relative;
+  width: 100%;
+  background: #7d9253;
+  min-height: 100px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.social-icon,
+.menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+  list-style: none;
+}
+
+
+.social-icon__link {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.social-icon__link:hover {
+  transform: translateY(-10px);
+  color: #444444!important;
+}
+
+.menu__link {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+.menu__link:hover {
+  opacity: 1;
+  color: #252525;
+}
+
+.footer p {
+  color: #fff;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.wave {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("images/wave-color.png"); /*https://i.ibb.co/wQZVxxk/wave.png*/
+  background-size: 1000px 100px;
+}
+
+.wave#wave1 {
+  z-index: 1000;
+  opacity: 1;
+  bottom: 0;
+  animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+  z-index: 999;
+  opacity: 0.5;
+  bottom: 10px;
+  animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+  z-index: 1000;
+  opacity: 0.2;
+  bottom: 15px;
+  animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+  z-index: 999;
+  opacity: 0.7;
+  bottom: 20px;
+  animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+  0% {
+    background-position-x: 1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: -1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}

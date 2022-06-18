@@ -1,0 +1,153 @@
+/* .bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+} */
+body{
+  min-height: 100vh;
+  display: flex;
+    flex-direction: column;
+}
+
+.main-heading{
+  font-family: 'Rajdhani', sans-serif;
+  padding: 10px 0 10px 0;
+}
+
+.lat{
+  padding-left: 16px!important;
+  padding-right: 16px!important;
+}
+
+.btn-outline-success{
+  color: #728f55!important;
+  border-color: #728f55!important;
+}
+
+.btn-outline-success:hover{
+  color: white!important;
+  background-color: #728f55!important;
+}
+
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 16px;
+  transform: scale(0.8);
+  transition: 0.5s;
+}
+
+.reveal-if-active label {
+  display: block;
+  margin: 0 0 3px 0;
+}
+
+.reveal-if-active input[type=text] {
+  width: 100%;
+}
+
+input[type="radio"]:checked~.reveal-if-active,
+input[type="checkbox"]:checked~.reveal-if-active {
+  opacity: 1;
+  max-height: 270px;
+  padding: 10px 20px;
+  transform: scale(1);
+  overflow: visible;
+}
+
+.require-if-active{
+  width: 300px;
+}
+
+.result-btn{
+  background-color: #728f55!important;
+}
+.result-btn:hover{
+  border-color: #728f55!important;
+  color: #728f55!important;
+  background-color: white!important;
+}
+
+
+/* Disease Pred */
+.upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* background: linear-gradient(to right, #D50000, #b06ab3); */
+  color:black;
+  font-family: 'LATO', sans-serif
+}
+.file-drop-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    padding: 25px;
+    border: 1.7px dashed #7d9253;
+    border-radius: 3px;
+    transition: .2s
+}
+
+.choose-file-button {
+    flex-shrink: 0;
+    background-color: #7d9253;
+    color: white;
+    border: 1.5px solid #7d9253;
+    border-radius: 3px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    font-size: 17px;
+    text-transform: uppercase;
+}
+
+
+.file-message {
+    font-size: small;
+    font-weight: 300;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #7d9253;
+}
+
+.file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    widows: 100%;
+    cursor: pointer;
+    opacity: 0
+}
+
+.file-drop-area:hover .choose-file-button{
+  background-color: rgba(255, 255, 255, 0.04)!important;
+  color: #7d9253!important;
+}
+
+.my-custom{
+  margin-top: 2rem!important;
+  margin-bottom: 2rem!important;
+}
+
+.font-med-size{
+  font-size: 1.15rem;
+}
+
+#cropDesc .table td, .table th{
+  border-spacing: 12px;
+  vertical-align: middle;
+}

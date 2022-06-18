@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>{{ name }} | Grow'in</title>
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon_io//apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon_io/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon_io//favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'images/favicon_io//site.webmanifest' %}">  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+
+</head>
+
+<body>
+
+  {% include 'navbar.html' %}
+
+
+  <div id="cropDesc" class="container">
+    <div class="py-5 text-center">
+      <h2 class="main-heading display-4 my-5 font-weight-bold">CROP DETAILS</h2>
+    </div>
+
+    <table class="table" style="font-size: 1.1rem;">
+      <tbody>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Crop Name</th>
+          <td>{{ name }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Alternate Name</th>
+          <td>{{ alternateName }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Sow Instructions</th>
+          <td>{{ sowInstructions }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Space Instructions</th>
+          <td>{{ spaceInstructions }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Harvest Instructions</th>
+          <td>{{ harvestInstructions }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Compatible Plants</th>
+          <td>{{ compatiblePlants }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Avoid Instructions</th>
+          <td>{{ avoidInstructions }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Culinary Hints</th>
+          <td>{{ culinaryHints }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">Culinary Preservation</th>
+          <td>{{ culinaryPreservation }}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="width: 250px; height: 90px">URL</th>
+          <td><a href="{{ url }}" target="_blank">{{ url }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+  <!-- External JS -->
+  <script src="js/services.js" charset="utf-8"></script>
+
+  {% include 'footer.html' %}
+
+
+</body>
+
+</html>
