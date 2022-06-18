@@ -134,7 +134,7 @@ def dp_Img(request):
 
         dp.delete()
         
-        directory = "D:/AGRI/AGRI/agri/data/data/"
+        directory = "./data/data/"
         filelist = glob.glob(os.path.join(directory, "*"))
         for f in filelist:
             os.remove(f)

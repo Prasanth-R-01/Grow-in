@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web gunicorn agri.wsgi:application --log-file -
